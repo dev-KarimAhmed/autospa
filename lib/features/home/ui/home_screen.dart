@@ -6,7 +6,6 @@ import 'package:autospa/features/home/logic/cubit/logout_cubit.dart';
 import 'package:autospa/features/home/logic/cubit/logout_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, this.userName});
