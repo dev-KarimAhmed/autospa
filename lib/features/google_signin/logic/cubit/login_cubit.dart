@@ -4,19 +4,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
-
-
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginState.initial());
 
+  GoogleSignInAccount? googleUser;
+  final SupabaseClient client = Supabase.instance.client;
 
-    GoogleSignInAccount? googleUser;
-    final SupabaseClient  client = Supabase.instance.client;
   Future<AuthResponse> googleSignIn() async {
     emit(LoginState.loading());
-    final webClientId =
-        dotenv.env['GOOGLE_WEB_CLIENT_ID']!;
+    final webClientId = dotenv.env['GOOGLE_WEB_CLIENT_ID']!;
 
     final GoogleSignIn googleSignIn = GoogleSignIn(
       // clientId: iosClientId,
@@ -39,8 +35,8 @@ class LoginCubit extends Cubit<LoginState> {
       idToken: idToken,
       accessToken: accessToken,
     );
-
-    emit(LoginState.success());
+    
+    emit(LoginState.success(username: googleUser?.displayName));
     return response;
   }
 }

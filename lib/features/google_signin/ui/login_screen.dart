@@ -16,7 +16,11 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is Success) {
-          context.pushReplacmentNamed(Routes.homeScreen);
+          context.pushNamedAndRemoveUntil(
+            Routes.homeScreen,
+            predicate: (route) => false,
+            arguments: state.username,
+          );
         }
         if (state is Loading) {
           buildCustomLoading(context);
@@ -26,7 +30,7 @@ class LoginScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(title: const Text('Login With Google')),
 
-          body:  Center(
+          body: Center(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.r),

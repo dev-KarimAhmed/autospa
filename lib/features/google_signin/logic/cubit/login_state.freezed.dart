@@ -110,33 +110,67 @@ String toString() {
 
 
 class Success implements LoginState {
-  const Success();
+  const Success({this.username});
   
 
+ final  String? username;
 
-
+/// Create a copy of LoginState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SuccessCopyWith<Success> get copyWith => _$SuccessCopyWithImpl<Success>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success&&(identical(other.username, username) || other.username == username));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,username);
 
 @override
 String toString() {
-  return 'LoginState.success()';
+  return 'LoginState.success(username: $username)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $SuccessCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
+  factory $SuccessCopyWith(Success value, $Res Function(Success) _then) = _$SuccessCopyWithImpl;
+@useResult
+$Res call({
+ String? username
+});
 
 
+
+
+}
+/// @nodoc
+class _$SuccessCopyWithImpl<$Res>
+    implements $SuccessCopyWith<$Res> {
+  _$SuccessCopyWithImpl(this._self, this._then);
+
+  final Success _self;
+  final $Res Function(Success) _then;
+
+/// Create a copy of LoginState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? username = freezed,}) {
+  return _then(Success(
+username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
