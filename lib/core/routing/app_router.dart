@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:autospa/core/routing/routes.dart';
 import 'package:autospa/features/google_signin/ui/login_screen.dart';
 import 'package:autospa/features/home/ui/home_screen.dart';
